@@ -1,0 +1,41 @@
+Arguments: 
+  /Users/oleg/.nvm/versions/node/v18.19.1/bin/node /opt/homebrew/bin/yarn
+
+PATH: 
+  /opt/homebrew/opt/llvm/bin:/opt/homebrew/opt/llvm/bin:/opt/homebrew/opt/llvm/bin:/opt/homebrew/opt/node@16/bin:/opt/homebrew/bin:/Users/oleg/.nvm/versions/node/v18.19.1/bin:/Users/oleg/.nvm/versions/node/v18.19.1/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/homebrew/opt/llvm/bin:/opt/homebrew/opt/node@16/bin:/opt/homebrew/bin:/Users/oleg/.nvm/versions/node/v18.19.1/bin:/Users/oleg/.cargo/bin:/Users/oleg/.local/bin:/Users/oleg/.local/bin:/Users/oleg/.local/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.19.1
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@cheqd%2fsdk-old: Not found
+      at params.callback [as _callback] (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at self.callback (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:517:28)
+      at Request.<anonymous> (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:517:28)
+      at IncomingMessage.<anonymous> (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:631:28)
+      at IncomingMessage.emit (node:events:529:35)
+      at endReadableNT (node:internal/streams/readable:1400:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+    "dependencies": {
+      "@cheqd/sdk": "5.0.0",
+      "@cheqd/sdk-old": "4.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
