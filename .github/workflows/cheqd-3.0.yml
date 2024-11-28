@@ -1,4 +1,4 @@
-name: Cheqd blockchain modules tests
+name: cheqd-node 3.0.1 test
 
 on: [pull_request]
 jobs:
