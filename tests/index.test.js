@@ -2,7 +2,7 @@ import { createCheqdSDK, DIDModule } from "@cheqd/sdk";
 import {
   createCheqdSDK as createOldCheqdSDK,
   DIDModule as OldDIDModule,
-} from "@cheqd/sdk";
+} from "@cheqd/sdk-old";
 import {
   DidKeypair,
   Ed25519Keypair,
@@ -17,6 +17,7 @@ import {
 } from "@docknetwork/credential-sdk/types";
 import { describe, test } from "vitest";
 import { valueBytes } from "@docknetwork/credential-sdk/utils";
+import { TypedUUID } from "@docknetwork/credential-sdk/types/generic";
 
 const createRandomDidDocument = async (createSDK) => {
   const wallet = await DirectSecp256k1HdWallet.fromMnemonic(
@@ -60,6 +61,7 @@ const createRandomDidDocument = async (createSDK) => {
     [signature],
     didDocument,
     (await wallet.getAccounts())[0].address,
+    undefined,
     undefined,
     undefined,
     { sdk: cheqd },
