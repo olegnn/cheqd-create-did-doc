@@ -22,7 +22,7 @@ rm -rf $CHAIN_DIR
 
 # Step 1: Initialize the chain
 echo "Initializing chain..."
-$COMMAND init $NODE_NAME --chain-id $CHAIN_ID --home $CHAIN_DIR
+$COMMAND init $NODE_NAME --chain-id $CHAIN_ID --home $CHAIN_DIR --default-denom ncheq
 
 # Step 2: Generate a keypair (if it doesn't exist already)
 if [ -z "$CHEQD_MNEMONIC" ]; then
