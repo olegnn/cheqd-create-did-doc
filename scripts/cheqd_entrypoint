@@ -5,8 +5,10 @@ CHAIN_ID="cheqd-dev"
 NODE_NAME="cheqd-dev"
 KEY_NAME="my-key"
 MONIKER="local-node"
+STAKE_DENOM="stake"
 CHAIN_DIR="$HOME/.testnode"
-GENESIS_AMOUNT="20000000000000000ncheq"  # Very large amount
+GENESIS_AMOUNT="100000000000000000000000000000ncheq,8246428745600000$STAKE_DENOM"  # Very large amount
+STAKE_AMOUNT="8246428745600000$STAKE_DENOM"  # Ensure this is >= DefaultPowerReduction
 COMMAND="cheqd-noded"
 
 # Install Cosmos SDK if not installed (replace this with your specific chain's SDK)
@@ -33,7 +35,7 @@ fi
 
 # Step 3: Add the generated key as a genesis account
 echo "Adding genesis account..."
-$COMMAND genesis add-genesis-account $KEY_NAME $GENESIS_AMOUNT --keyring-backend test --home $CHAIN_DIR
+$COMMAND genesis add-genesis-account $($COMMAND keys show $KEY_NAME -a --keyring-backend test --home $CHAIN_DIR) $GENESIS_AMOUNT --home $CHAIN_DIR
 
 # Step 4: Generate a genesis transaction
 echo "Generating genesis transaction..."
@@ -42,10 +44,6 @@ $COMMAND genesis gentx $KEY_NAME $STAKE_AMOUNT --keyring-backend test --chain-id
 # Step 5: Collect genesis transactions into the genesis file
 echo "Collecting genesis transactions..."
 $COMMAND genesis collect-gentxs --home $CHAIN_DIR
-
-# print the genesis file
-echo "Genesis file:"
-cat $CHAIN_DIR/config/genesis.json
 
 # Step 6: Validate the genesis file
 echo "Validating genesis file..."
