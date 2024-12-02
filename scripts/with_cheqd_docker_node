@@ -16,10 +16,13 @@ alice_container_id=$(docker run --platform linux/amd64 -d --rm --name cheqd-dev 
 alice_home=$(docker exec $alice_container_id sh -c 'echo $HOME')
 
 # copy the genesis file to the node's home directory
-docker exec $alice_container_id cp /genesis/genesis.json $alice_home/.testnode/config/genesis.json
+# docker exec $alice_container_id cp /genesis/genesis.json $alice_home/.testnode/config/genesis.json
 
 # check node home
 docker exec $alice_container_id ls -la $alice_home/.testnode/config
+
+# cat genesis file
+docker exec $alice_container_id cat $alice_home/.testnode/config/genesis.json
 
 cleanup() {
   docker kill $alice_container_id 2> /dev/null
