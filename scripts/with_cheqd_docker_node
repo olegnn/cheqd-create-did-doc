@@ -13,7 +13,7 @@ docker pull --platform linux/amd64 ghcr.io/cheqd/cheqd-node:$IMAGE_TAG
 alice_container_id=$(docker run --platform linux/amd64 -d --rm --name cheqd-dev -p 26656:26656 -p 26657:26657 -p 1317:1317 -p 9090:9090 -e CHEQD_MNEMONIC="$CHEQD_MNEMONIC" -v $entrypoint:/usr/local/bin/entrypoint.sh -v $config:/tmp/cheqd_config.toml -v $genesis:/genesis --entrypoint /usr/local/bin/entrypoint.sh ghcr.io/cheqd/cheqd-node:$IMAGE_TAG start)
 
 # copy genesis.json
-docker cp $alice_container_id:/root/.cheqd/config/genesis.json genesis.json
+docker cp $genesis cheqd-dev:/genesis
 
 cleanup() {
   docker kill $alice_container_id 2> /dev/null
