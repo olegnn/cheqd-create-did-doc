@@ -19,7 +19,7 @@ docker exec $alice_container_id cat /genesis/genesis.json
 alice_home=$(docker exec $alice_container_id sh -c 'echo $HOME')
 
 # copy the genesis file to the node's home directory
-docker cp $genesis $alice_container_id:$alice_home/.cheqd/config/genesis.json
+docker exec $alice_container_id cp /genesis/genesis.json $alice_home/.cheqd/config/genesis.json
 
 cleanup() {
   docker kill $alice_container_id 2> /dev/null
