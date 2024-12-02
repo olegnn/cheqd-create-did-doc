@@ -35,7 +35,7 @@ fi
 
 # Step 3: Add the generated key as a genesis account
 echo "Adding genesis account..."
-$COMMAND genesis add-genesis-account $($COMMAND keys show $KEY_NAME -a --keyring-backend test --home $CHAIN_DIR) $GENESIS_AMOUNT --home $CHAIN_DIR
+$COMMAND genesis add-genesis-account $($COMMAND keys show $KEY_NAME -a --keyring-backend test --home $CHAIN_DIR) $GENESIS_AMOUNT --keyring-backend test --home $CHAIN_DIR
 
 # Step 4: Generate a genesis transaction
 echo "Generating genesis transaction..."
