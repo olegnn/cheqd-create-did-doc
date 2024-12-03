@@ -10,7 +10,7 @@ genesis="$(realpath $(dirname $0)/genesis.json)"
 docker pull --platform linux/amd64 ghcr.io/cheqd/cheqd-node:$IMAGE_TAG
 
 # start a pos alice node
-alice_container_id=$(docker run --platform linux/amd64 -d --rm --name cheqd-dev -p 26656:26656 -p 26657:26657 -p 1317:1317 -p 9090:9090 -e CHEQD_MNEMONIC="$CHEQD_MNEMONIC" -v $entrypoint:/usr/local/bin/entrypoint.sh -v $config:/tmp/cheqd_config.toml -v $genesis:/genesis/genesis.json --entrypoint /usr/local/bin/entrypoint.sh ghcr.io/cheqd/cheqd-node:$IMAGE_TAG start)
+alice_container_id=$(docker run --platform linux/amd64 -d --rm --name cheqd-dev -p 26656:26656 -p 26657:26657 -p 1317:1317 -p 9090:9090 -e CHEQD_MNEMONIC="$CHEQD_MNEMONIC" -v $entrypoint:/usr/local/bin/entrypoint.sh -v $config:/tmp/cheqd_config.toml --entrypoint /usr/local/bin/entrypoint.sh ghcr.io/cheqd/cheqd-node:$IMAGE_TAG start)
 
 # tail logs
 # docker logs -f $alice_container_id
@@ -18,14 +18,11 @@ alice_container_id=$(docker run --platform linux/amd64 -d --rm --name cheqd-dev 
 # locate the node's home directory
 alice_home=$(docker exec $alice_container_id sh -c 'echo $HOME')
 
-# check node home
-docker exec $alice_container_id ls -la $alice_home/.testnode/config
-
 # replace default "stake" with "ncheq" in genesis file
-docker exec $alice_container_id sed 's/"stake"/"ncheq"/' $alice_home/.testnode/config/genesis.json
+# docker exec $alice_container_id sed 's/"stake"/"ncheq"/' $alice_home/.testnode/config/genesis.json
 
 # cat genesis file
-docker exec $alice_container_id cat $alice_home/.testnode/config/genesis.json
+# docker exec $alice_container_id cat $alice_home/.testnode/config/genesis.json
 
 # tail logs
 docker logs -f $alice_container_id
