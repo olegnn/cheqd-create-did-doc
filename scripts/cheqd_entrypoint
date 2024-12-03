@@ -32,6 +32,10 @@ echo "Configuring feemarket..."
 sed 's/"fee_denom": "stake"/"fee_denom": "ncheq"/' $CHAIN_DIR/.testnode/config/genesis.json
 sed 's/"min_base_gas_price": "1.000000000000000000"/"min_base_gas_price": "0.005000000000000000"/' $CHAIN_DIR/.testnode/config/genesis.json
 
+# Cat genesis file
+echo "Genesis file..."
+cat $CHAIN_DIR/.testnode/config/genesis.json
+
 # Step 2: Generate a keypair (if it doesn't exist already)
 if [ -z "$CHEQD_MNEMONIC" ]; then
   echo "Creating key for node..."
