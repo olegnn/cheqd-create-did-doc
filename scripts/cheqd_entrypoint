@@ -5,7 +5,6 @@ CHAIN_ID="cheqd-dev"
 NODE_NAME="cheqd-dev"
 KEY_NAME="my-key"
 MONIKER="local-node"
-STAKE_DENOM="stake"
 CHAIN_DIR="$HOME/.testnode"
 GENESIS_AMOUNT="100000000000000000000000000000ncheq"  # Very large amount
 STAKE_AMOUNT="8246428745600000ncheq"  # Ensure this is >= DefaultPowerReduction
@@ -23,6 +22,15 @@ rm -rf $CHAIN_DIR
 # Step 1: Initialize the chain
 echo "Initializing chain..."
 $COMMAND init $NODE_NAME --chain-id $CHAIN_ID --home $CHAIN_DIR --default-denom ncheq
+
+# Replace the default "stake" with "ncheq" in the genesis file
+echo "Replacing default 'stake' with 'ncheq' in genesis file..."
+sed 's/"stake"/"ncheq"/' $CHAIN_DIR/.testnode/config/genesis.json
+
+# Configure feemarket
+echo "Configuring feemarket..."
+sed 's/"fee_denom": "stake"/"fee_denom": "ncheq"/' $CHAIN_DIR/.testnode/config/genesis.json
+sed 's/"min_base_gas_price": "1.000000000000000000"/"min_base_gas_price": "0.005000000000000000"/' $CHAIN_DIR/.testnode/config/genesis.json
 
 # Step 2: Generate a keypair (if it doesn't exist already)
 if [ -z "$CHEQD_MNEMONIC" ]; then
@@ -53,5 +61,5 @@ $COMMAND genesis validate-genesis --home $CHAIN_DIR
 cp /tmp/cheqd_config.toml $CHAIN_DIR/config/config.toml
 
 # Step 8: Starting the node
-echo "Starting Cosmos node..."
+echo "Starting cheqd node..."
 $COMMAND start --home $CHAIN_DIR --moniker $MONIKER --log_level info

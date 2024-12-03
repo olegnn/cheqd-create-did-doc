@@ -28,7 +28,7 @@ docker exec $alice_container_id sed 's/"stake"/"ncheq"/' $alice_home/.testnode/c
 docker exec $alice_container_id cat $alice_home/.testnode/config/genesis.json
 
 # tail logs
-docker logs -f $alice_container_id
+# docker logs -f $alice_container_id
 
 cleanup() {
   docker kill $alice_container_id 2> /dev/null
