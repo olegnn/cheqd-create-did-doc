@@ -1,11 +1,11 @@
 name: cheqd-node 3.0.1 test
 
-on: [pull_request]
+on: [pull_request, push]
 jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      CHEQD_MNEMONIC: "steak come surprise obvious remain black trouble measure design volume retreat float coach amused match album moment radio stuff crack orphan ranch dose endorse"
+      CHEQD_MNEMONIC: "sketch mountain erode window enact net enrich smoke claim kangaroo another visual write meat latin bacon pulp similar forum guilt father state erase bright"
       IMAGE_TAG: "3.0.1"
     steps:
       - uses: actions/checkout@v2
