@@ -7,8 +7,8 @@ KEY_NAME="my-key"
 MONIKER="local-node"
 STAKE_DENOM="stake"
 CHAIN_DIR="$HOME/.testnode"
-GENESIS_AMOUNT="100000000000000000000000000000ncheq,8246428745600000$STAKE_DENOM"  # Very large amount
-STAKE_AMOUNT="8246428745600000$STAKE_DENOM"  # Ensure this is >= DefaultPowerReduction
+GENESIS_AMOUNT="100000000000000000000000000000ncheq"  # Very large amount
+STAKE_AMOUNT="8246428745600000ncheq"  # Ensure this is >= DefaultPowerReduction
 COMMAND="cheqd-noded"
 
 # Install Cosmos SDK if not installed (replace this with your specific chain's SDK)
