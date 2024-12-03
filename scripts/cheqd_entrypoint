@@ -23,11 +23,11 @@ rm -rf $CHAIN_DIR
 echo "Initializing chain..."
 $COMMAND init $NODE_NAME --chain-id $CHAIN_ID --home $CHAIN_DIR --default-denom ncheq
 
-# Replace the default "stake" with "ncheq" in the genesis file
+# Step 1.a: Replace the default "stake" with "ncheq" in the genesis file
 echo "Replacing default 'stake' with 'ncheq' in genesis file..."
 sed -i 's/"stake"/"ncheq"/' $CHAIN_DIR/config/genesis.json
 
-# Configure feemarket
+# Step 1.b: Configure feemarket
 echo "Configuring feemarket..."
 sed -i 's/"fee_denom": "stake"/"fee_denom": "ncheq"/' $CHAIN_DIR/config/genesis.json
 sed -i 's/"min_base_gas_price": "1.000000000000000000"/"min_base_gas_price": "0.005000000000000000"/' $CHAIN_DIR/config/genesis.json
@@ -58,7 +58,7 @@ $COMMAND genesis collect-gentxs --home $CHAIN_DIR
 echo "Validating genesis file..."
 $COMMAND genesis validate-genesis --home $CHAIN_DIR
 
-# Cat genesis file
+# Step 6.a: Cat genesis file
 echo "Modified genesis file..."
 cat $CHAIN_DIR/config/genesis.json
 

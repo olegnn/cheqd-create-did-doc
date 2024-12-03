@@ -11,16 +11,10 @@ docker pull --platform linux/amd64 ghcr.io/cheqd/cheqd-node:$IMAGE_TAG
 # start a pos alice node
 alice_container_id=$(docker run --platform linux/amd64 -d --rm --name cheqd-dev -p 26656:26656 -p 26657:26657 -p 1317:1317 -p 9090:9090 -e CHEQD_MNEMONIC="$CHEQD_MNEMONIC" -v $entrypoint:/usr/local/bin/entrypoint.sh -v $config:/tmp/cheqd_config.toml --entrypoint /usr/local/bin/entrypoint.sh ghcr.io/cheqd/cheqd-node:$IMAGE_TAG start)
 
-# tail logs
-# docker logs -f $alice_container_id
-
 # locate the node's home directory
 alice_home=$(docker exec $alice_container_id sh -c 'echo $HOME')
 
-# cat genesis file
-# docker exec $alice_container_id cat $alice_home/.testnode/config/genesis.json
-
-# tail logs
+# tail logs, if necessary
 # docker logs -f $alice_container_id
 
 cleanup() {
