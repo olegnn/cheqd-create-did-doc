@@ -17,19 +17,11 @@ alice_container_id=$(docker run --platform linux/amd64 -d --rm --name cheqd-dev 
 # locate the node's home directory
 alice_home=$(docker exec $alice_container_id sh -c 'echo $HOME')
 
-# replace default "stake" with "ncheq" in genesis file
-docker exec $alice_container_id sed 's/"stake"/"ncheq"/' $alice_home/.testnode/config/genesis.json
-
-# configure feemarket, if necessary
-docker exec $alice_container_id sed 's/"fee_denom": "stake"/"fee_denom": "ncheq"/' $alice_home/.testnode/config/genesis.json
-docker exec $alice_container_id sed 's/"min_base_gas_price": "1.000000000000000000"/"min_base_gas_price": "0.005000000000000000"/' $alice_home/.testnode/config/genesis.json
-docker exec $alice_container_id sed 's/"base_gas_price": "1.000000000000000000"/"base_gas_price": "0.005000000000000000"/' $alice_home/.testnode/config/genesis.json
-
 # cat genesis file
 # docker exec $alice_container_id cat $alice_home/.testnode/config/genesis.json
 
 # tail logs
-docker logs -f $alice_container_id
+# docker logs -f $alice_container_id
 
 cleanup() {
   docker kill $alice_container_id 2> /dev/null
